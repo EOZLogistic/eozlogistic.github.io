@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="stylesheet" type="text/css"
+        href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+    <script type="text/javascript" src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/headroom.js@0.12.0/dist/headroom.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/px2code/posize/build/v1.00.3.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<style>
+    html,
+    body {
+        font-family: Arial;
+
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        font-size: 15px;
+        background-color: #CBCBCB;
+    }
+
+    table,
+    tr {
+        border: none;
+        border-collapse: collapse;
+        width: 100%;
+        align-items: center;
+    }
+
+    #head {
+        background-color: #699BF7
+    }
+
+    #head2 {
+        background-color: #4468AA
+    }
+
+    #head,
+    #head2 {
+        color: white;
+        height: 100px;
+        border: none;
+        border-collapse: collapse;
+        width: 100%;
+        align-items: center;
+        text-align: center;
+    }
+
+    hr {
+        border: 1px solid black;
+    }
+
+    #search {
+        width: 60vw;
+        padding: 0;
+        margin: 0;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 5%;
+        background-color: #E5E5E5;
+    }
+    #search td{
+        width: 60vw;
+        padding: 0;
+        margin: 0;
+        
+    }
+    #search td:nth-child(2){
+        right: 0;
+        width: fit-content;
+        margin-right: auto;
+        white-space: nowrap;
+
+    }
+#search button{
+    display: inline-block;
+}
+    button {
+        background-color: #699BF7;
+        border: none;
+        color: white;
+        padding: 15px 20px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        display: inline-block;
+        cursor: pointer;
+        
+    }
+
+    input {
+        font-size:x-large;
+        width: 99%;
+        display: inline-block;
+        height: 50px;
+        border: none;
+        background-color: #E5E5E5;
+    }
+
+
+    #trash {
+        display: inline-block;
+        background-color: #E5E5E5;
+        margin: 0;
+        width: 50px;
+        vertical-align: middle;
+        cursor: pointer;
+    }
+
+    #category {
+        color: blue;
+        border-bottom: 2px solid black;
+        height: 10px;
+        margin-left: 5%;
+        margin-right: 5%;
+        padding-left: 5%;
+        padding-right: 5%;
+        padding-left: 10px;
+        height: 3vw;
+    }
+#category>td:first-child{
+    padding-left: 5%;
+}
+#category>td{
+    width: 19%;
+}
+    #tips {
+        border-style: solid;
+        border-color: lightblue;
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 1%;
+        color: grey;
+    }
+    .select {
+        border-bottom: 4px solid blue;
+    }
+    .select2 {
+        border-bottom: 4px solid blue;
+    }
+
+    #content {
+        margin: 5%;
+        padding-top: 1%;
+        background-color: white;
+    }
+
+    h1 {
+        margin-left: 5%;
+    }
+
+    #head img {
+        height: 100px;
+    }
+    #cat1 {
+        height: 30vw;
+        padding: 70px 0;
+        align-items: center;
+        text-align: center;
+    }
+
+    #cat1>img {
+        display: inline-block;
+        width: 10%;
+    }
+
+    #footer {
+        color: white;
+        background-color: #4468AA;
+        border-top: 5px solid lightblue;
+    }
+    #footer td{
+        padding:10px 
+
+    }
+    #footer td>a,#footer div>a{
+        display: block;
+        padding: 5px;
+    }
+    #footer td>a:first-child,#footer div>a:first-child{
+        font-weight: bold;
+    }
+#c{
+    float: right;
+}
+a{
+    color: white;
+    text-decoration: none;
+}
+#footer img{
+    width: 100px;
+    align-items: center;
+}
+
+#footer>a{
+    font-size: small;
+    color: grey;
+}
+#head2>td{
+width: 33%;
+}
+a:hover{
+    text-decoration: underline;
+
+}
+.hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+</style>
+<table>
+    <tr id=head>
+        <td><img src="static/0ef82474a41b6b0b0a4cafe614385832.png">
+            </td>
+            <td>Home</td>
+        <td>Product & Service</td>
+        <td>Other Service</td>
+        <td>Help Center</td>
+        <td>About Us</td>
+        <td>Log in/Register
+        </td>
+        <td>
+        <img src="static/200bcf0c1062f35363e59f3e1963a77d.png"></td>
+    </tr>
+</table>
+<table>
+    <tr id=head2>
+        <td>Shipping</td>
+        <td>Track & Trace</td>
+        <td>Service & Support</td>
+    </tr>
+</table>
+<div id=content>
+    <table  id=search>
+<tr>
+    <td>
+        <input placeholder="Please insert the order no. here and enter."></input>
+    </td>
+    <td>
+
+        <img id=trash src="static/bf09cdd57bbf0304db8739a7176c1814.png">
+        <button>Enquiry</button>
+    </td>
+
+</tr>
+</table>
+    <h1>My parcel</h1>
+    <br>
+    <hr><br>
+    <div id=tips> Please enter your order no. form EOZ Retail or enter your tracking no. in the above blank </div>
+    <br>
+    <table>
+        <tr id=category>
+            <td class=select>All</td>
+            <td>I sent</td>
+            <td>I recievied</td>
+            <td>Batch ordering</td>
+            <td>Order from EOZ</td>
+        </tr>
+    </table>
+    <div class=tab id=cat1>
+        <img src="static/7e384cb11dc51833fba3c00538f3d9b0.png">
+        <br> Search and view my shipment details
+    </div>
+    <!--cat1-->
+</div>
+<!--content-->
+<div id=footer>
+    <table>
+        <tr>
+            <td>
+                <a>Product & Services</a>
+                <a>Express</a>
+                <a>Warehousing $ Distrribution Services</a>
+                <a>Cold Chain Services</a>
+            </td>
+            <td>
+                <a>Product & Services</a>
+                <a>EOZ Locker</a>
+                <a>Hong Kong Airport Delivery Services</a>
+                <a>Preminium Logistics Solution</a>
+            </td>
+            <td>
+                <a>Help Centre</a>
+                <a>Services & Support</a>
+            </td>
+            <td>
+                <a>About Us</a>
+                <a>About EOZ</a>
+                <a>News</a>
+                <a>Promotions & Events</a>
+                <a>Contact Us</a>
+            </td>
+            <td>
+                <div> <a>Online Service</a>
+                    <a> 👧 Enter to online customer services </a></div>
+                <div><a> Download Application Right Now
+                    <br>
+                    <img src="static/qr.png"></a></div>
+            </td>
+        </tr>
+    </table>
+    <a>Term of use & Privacy Policy </a>
+    <a id=c>Copyright © 2022 EOZ Logistic Limited.</a>
+</div>
+<!--footer-->
+<script type="text/javascript">
+    AOS.init();
+</script>
+</body>
+<script>
+    $(document).ready(function () {
+        $('a').attr('href','#')
+        $('#category>td').click(function () {
+            $('#category>td').removeClass('select')
+            $(this).addClass('select')
+        })
+        $('#trash').click(function(){
+            $('input').val('')
+        })
+        $('#head td,#head2 td').hover(function(){
+            $( this ).addClass( "hover" );
+
+        },function(){
+            $( this ).removeClass( "hover" );
+
+        })
+        $('#category>td').hover(function(){
+
+            $( this ).addClass('select2')
+        },function(){
+
+            $( this ).removeClass('select2')
+
+        })
+    })
+</script>
+
+</html>
