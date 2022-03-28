@@ -6,57 +6,57 @@ sudo service apache2 restart
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 <style>
-    html,
-    body {
-        font-family: Arial;
-        padding: 0;
-        margin: 0;
-        height: 100%;
-        font-size: 15px;
-        overflow-x: hidden;
+html,
+body {
+font-family: Arial;
+padding: 0;
+margin: 0;
+height: 100%;
+font-size: 15px;
+overflow-x: hidden;
 
-    }
-    p{
-        margin: 0;
-        padding: 0;
-        display: inline-block;
-        color: red;
-    }
-    input{
-        width: 100%;
-        margin: 0;
-        padding: 0;
-    }
-    img{
-        width: 100%;
-    }
-    nav{
-        margin: 0;
-        background-color:#699BF7 ;
-        padding: 1%;
-        margin-bottom: 1%;
-        border-style: none;
-        color: white;
-        width: 100%;
-        overflow-x: hidden;
-    }
-    nav img{
-        height: 30px;
-        width: 30px;
-        display: inline;
+}
+p{
+margin: 0;
+padding: 0;
+display: inline-block;
+color: red;
+}
+input{
+width: 100%;
+margin: 0;
+padding: 0;
+}
+img{
+width: 100%;
+}
+nav{
+margin: 0;
+background-color:#699BF7 ;
+padding: 1%;
+margin-bottom: 1%;
+border-style: none;
+color: white;
+width: 100%;
+overflow-x: hidden;
+}
+nav img{
+height: 30px;
+width: 30px;
+display: inline;
 padding-right: 3%;
-    }
-    nav h1{
-        display: inline;
+}
+nav h1{
+display: inline;
 
-    }
-    button{
-        cursor: pointer;
-    }
+}
+button{
+cursor: pointer;
+}
 
 </style>
 <nav>
-    <img src="static/icon.png"><h1>Storage Warehouse Record</h1><br>
+<img src="static/icon.png"><h1>Storage Warehouse Record</h1><br>
 <button id='add'>Add Row</button>
 <button id='delete'>Delete Selected Row</button>
 Double click cell to edit content
@@ -85,7 +85,7 @@ var result=JSON.parse("{{result}}".replaceAll('&#34;','"'))
 Object.keys(result).forEach(key=>{
 $('tbody').append('<tr id='+key+'><td>'+result[key]['Id']+'</td><td>'+result[key]['Name']+'</td><td>'+result[key]['Price']+
 '</td><td>'+result[key]['Description']+'</td><td>'+result[key]['Date']+'</td><td>'+result[key]['Quantity']+
-    '</td><td><img src="/static/'+result[key]['Image']+'"></td></tr>')
+'</td><td><img src="/static/'+result[key]['Image']+'"></td></tr>')
 })
 var table=$('table').DataTable();
 $(document).ready( function () {
@@ -113,57 +113,64 @@ else {
 table.$('tr.selected').removeClass('selected');
 $(this).addClass('selected')}})
 $('#delete').click(function(){
-    delete result[$(table.row('.selected').node()).find('td:first-child').html()]
-    table.row('.selected').remove().draw(false)
+delete result[$(table.row('.selected').node()).find('td:first-child').html()]
+table.row('.selected').remove().draw(false)
 update()})
 $(document).on('dblclick','td',function(){
-    if($(this).is('tr>td:nth-child(7)')){
-        $(this).html('<input type=file>')
+if($(this).is('tr>td:nth-child(7)')){
+$(this).html('<input type=file>')
 debug=$(this)
-        $(this).change(function () {
-            var form_data = new FormData();
-    form_data.append("files[]",$(this).find('input')[0].files[0]);
-    column=$(this)
-    $.ajax({
-      url: '$upload'+$(this).parent().find('td:nth-child(1)').html(),
-      cache: false,
-      contentType: false,
-      processData: false,
-      data: form_data,
-      type: 'post',
-    }).done(function (data) {
-        column.html('<img src="/static/'+data.result+'">')
-   console.log(data.result)
-    })
-  })//upload
-    }else{
+$(this).change(function () {
+var form_data = new FormData();
+form_data.append("files[]",$(this).find('input')[0].files[0]);
+column=$(this)
+$.ajax({
+url: '$upload'+$(this).parent().find('td:nth-child(1)').html(),
+cache: false,
+contentType: false,
+processData: false,
+data: form_data,
+type: 'post',
+}).done(function (data) {
+column.html('<img src="/static/'+data.result+'">')
+console.log(data.result)
+})
+})//upload
+}else{
 $(this).html('<input rows="1" value="'+$(this).text()+'">')
 $("input").focus();
 $("input").focus(function() {
 }).blur(function() {
 temp=$(this)
 result[$(this).d()][headers[$(this).parent().index()]]=$(this).val()
-
 $(this).parent().html($(this).val())
 update()
 })
 }
 } )
+});
+$('td').mouseenter(function(){$(this).attr('title','Double Click me to edit')} )
+$(document).on('keypress', 'input', function () {
+var keycode = (event.keyCode ? event.keyCode : event.which);
+if(keycode == '13'){
+temp=$(this)
+result[$(this).d()][headers[$(this).parent().index()]]=$(this).val()
+$(this).parent().html($(this).val())
+update()
+}
+});
+$.fn.d = function () {
+return this.parent().parent().attr('id')
+}
+function renameKey ( obj, oldKey, newKey ) {
+obj[newKey] = obj[oldKey];
+delete obj[oldKey];
+}
 function update(){
 $.ajax({data:{json:JSON.stringify(result)},type:'POST',url:'/update'})
 .done(function(data){
-    $('p').html('Updated').show().delay(300).fadeOut()})
+$('p').html('Updated').show().delay(300).fadeOut()})
 .fail(function(data){$('p').html('Failed')})
-}
-});
-$('td').mouseenter(function(){$(this).attr('title','Double Click me to edit')} )
-
-$.fn.d = function () {
-    return this.parent().parent().attr('id')
-  }
-  function renameKey ( obj, oldKey, newKey ) {
-  obj[newKey] = obj[oldKey];
-  delete obj[oldKey];
 }
 
 </script>

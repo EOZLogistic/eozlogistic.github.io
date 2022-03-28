@@ -14,7 +14,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <style>
-
     html,
     body {
         font-family: Arial;
@@ -153,15 +152,16 @@
         padding-top: 1%;
         background-color: white;
     }
+
     h1 {
         margin-left: 5%;
     }
+
     #head img {
         height: 100px;
     }
     #cat1 {
-       min-height: 30vw;
-       height: fit-content;
+        height: 30vw;
         padding: 70px 0;
         align-items: center;
         text-align: center;
@@ -215,21 +215,6 @@ a:hover{
     cursor: pointer;
     text-decoration: underline;
 }
-#prog{display: none}
-#cat1 tr:hover{
-cursor:pointer;
-background-color: grey;
-}
-#prog td{padding: 3%;}
-#prog tr td:nth-child(1){width: 20%;}
-#prog button{
-    align-items: center;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-    width: fit-content;
-}
-#prog tr:first-child{display: none}
 </style>
 <table>
     <tr id=head>
@@ -240,6 +225,10 @@ background-color: grey;
         <td>Other Service</td>
         <td>Help Center</td>
         <td>About Us</td>
+        <td>Log in/Register
+        </td>
+        <td>
+        <img src="static/200bcf0c1062f35363e59f3e1963a77d.png"></td>
     </tr>
 </table>
 <table>
@@ -271,6 +260,8 @@ background-color: grey;
     <table>
         <tr id=category>
             <td class=select>All</td>
+            <td>I sent</td>
+            <td>I recievied</td>
             <td>Batch ordering</td>
             <td>Order from EOZ</td>
         </tr>
@@ -278,36 +269,6 @@ background-color: grey;
     <div class=tab id=cat1>
         <img src="static/7e384cb11dc51833fba3c00538f3d9b0.png">
         <br> Search and view my shipment details
-    </div>
-    <div id=prog>
-
-<br>
-<button>Confirm Delivery Arrived Destination</button>
-
-        <table>
-        <tr>
-            <td>Accepted</td>
-            <td>Delievered. THank you for using EOZ Logistics. Looking forward to serving you again (Total quantity of package: 1 piece(s))</td>
-        </tr>
-        <tr>
-            <td>Delievering</td>
-            <td>The shipment is handed over to and being delievered by Chan Tai Man (contact number: 12345678.
-                Please answer the call at ease as your privacy is properly protected by "safety call" !) (Total quantity of package: 1 piece(s))</td>
-        </tr>
-        <tr>
-            <td>In Transit</td>
-            <td>The shipment is arranged for handling and processing to the delivering </td>
-        </tr>
-        <tr>
-            <td>In Transit</td>
-            <td>The shipment arrive at [Hong Kong Kwun Tong Distribution Center]</td>
-        </tr>
-        <tr>
-            <td>In Transit</td>
-            <td>Departed</td>
-        </tr>
-    </table>
-
     </div>
     <!--cat1-->
 </div>
@@ -356,7 +317,6 @@ background-color: grey;
 </script>
 </body>
 <script>
-    var id
     $(document).ready(function () {
         $('a').attr('href','#')
         $('#category>td').click(function () {
@@ -377,41 +337,27 @@ background-color: grey;
 
             $( this ).addClass('select2')
         },function(){
+
             $( this ).removeClass('select2')
+
         })
-      $('#cat1 tr').click(function(){
-          id=$(this).find('td:first-child').html()
-      $('#tips').html('Order number:    '+id+'<br>Hong Kong → Hong Kong')
-      $('#cat1').hide()
-      $('#prog').show()
-      })  
-      $('#prog button').click(function(){
-        $.ajax({url: 'update' + id,
-          success: function () {
-            $('#prog tr:first-child').show()  
-            $('#prog button').html('Success').css('background-color','green').delay(1000).fadeOut()
-        
-        }})
-      })
-    })//ready
+    })
+
     function decodeHtml(html) {
         var txt = document.createElement("textarea");
         txt.innerHTML = html;
         return txt.value;
     }
    result = decodeHtml('{{result}}').split("行行")
-    result.forEach(function(e,i){result[i]=e.split("列列")})
+    result.forEach(function (element, index) {
+        result[index] = element.split("列列")
+    })
     result.pop()
+   console.log(result)
    $('.tab').html('<table><tr><th>Id</th><th>Timestamp</th></tr></table>').css('padding','0')
    result.forEach(function (element) {
     $('.tab table').append('<tr><td>'+element[0]+'</td><td>'+element[1]+'</td></tr>')
    })
-id=decodeHtml('{{id}}')
-if (id) {
-    $('.tab,#category').hide()
-$('#prog').show()
-
-}
 </script>
 
 </html>
